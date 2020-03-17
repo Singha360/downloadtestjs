@@ -5,9 +5,8 @@ const ProgressBar = require("progress");
 
 async function download() {
   if (!fs.existsSync(path.resolve(__dirname, "files", "nameOfFile.pkg"))) {
-    console.log("File already downloaded ");
-
-    const url = "";
+    const url =
+      "https://nopaystation.com/view/PSP/NPUH90048/CD00000000000000/0/pkg?version=1";
 
     console.log("Connecting …");
     const { data, headers } = await axios({
@@ -29,11 +28,9 @@ async function download() {
       }
     );
 
-    const writer = fs.createWriteStream(
-      path.resolve(__dirname, "files", "nameOfFile.pkg")
-    );
+    const writer = fs.createWriteStream(path.resolve(__dirname, "files"));
 
-    data.on("data", (chunk) => progressBar.tick(chunk.length));
+    data.on("data", chunk => progressBar.tick(chunk.length));
     data.pipe(writer);
   } else {
     console.log("File already in directory");

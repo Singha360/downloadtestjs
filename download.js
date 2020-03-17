@@ -1,32 +1,11 @@
-const fs = require("fs");
+const tsv = require("tsv");
 const path = require("path");
-const axios = require("axios").default;
+const fs = require("fs");
 
-async function download() {
-  const url = "";
-  const filepath = path.resolve(__dirname, "files", "nameOfFile.pkg"); //"nameOfFile.pkg" will change with the approriate name
-
-  const response = await axios({
-    method: "GET",
-    url: url,
-    responseType: "stream"
-  });
-
-  console.log(
-    fs.existsSync(path.resolve(__dirname, "files", "nameOfFile.pkg"))
-  );
-
-  // response.data.pipe(fs.createWriteStream(filepath));
-
-  // return new Promise((resolve, reject) => {
-  //   response.data.on("end", () => {
-  //     resolve();
-  //   });
-
-  //   response.data.on("error", (err) => {
-  //     reject(err);
-  //   });
+fs.readFile(path.resolve(__dirname, "PSV_GAMES.tsv"), "utf8", (err, data) => {
+  dataArr = tsv.parse(data)[1];
+  // dataArr.forEach(gameInfo => {
+  //   console.log(gameInfo["PKG direct link"]);
   // });
-}
-
-download();
+  console.log(dataArr);
+});

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
-    "progress": "^2.0.3"
+    "progress": "^2.0.3",
+    "tsv": "^0.2.0"
   }
 }
